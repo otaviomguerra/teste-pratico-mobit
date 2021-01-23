@@ -1,11 +1,8 @@
-import io
-
 import streamlit as st
-from PIL import Image
 
-from utils import score_input_image
+from frontend_utils import score_input_image
 
-BACKEND_URL = "http://fastapi:8000/segmentation"
+BACKEND_URL = "http://backend:8000/brisque-score"
 
 st.title("Image quality scorer")
 
@@ -23,21 +20,18 @@ input_image = st.file_uploader("insert image")
 # Calculate Quality Score
 if st.button("Get quality score"):
 
-    col1 = st.beta_columns(1)
+    col1, _ = st.beta_columns(2)
 
     if input_image:
-
-        # Display image
-        original_image = Image.open(input_image).convert("RGB")
         
-        
-        # TODO: Calculate score
-        score = score_input_image(original_image)
+        # Calculate BRISQUE Score
+        score = score_input_image(input_image, server_url=BACKEND_URL)
         
         col1.header("Image:")
-        col1.image(original_image, use_column_width=True)
-
-        # Display score
+        col1.image(input_image, use_column_width=True)
+        
+        col1.header("Score: ")
+        col1.write(score)
 
     else:
         st.write("Please insert an image!")
