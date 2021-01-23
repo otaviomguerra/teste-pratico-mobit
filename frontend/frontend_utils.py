@@ -1,4 +1,8 @@
+from json.decoder import JSONDecodeError
+
 import requests
+from PIL import UnidentifiedImageError
+from requests.exceptions import ConnectionError
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 
@@ -27,4 +31,8 @@ def score_input_image(image, server_url: str):
         server_url, data=m, headers={"Content-Type": m.content_type}, timeout=8000
     )
 
-    return response.json()
+    try:
+        response_json = response.json()
+        return response_json
+    except (ConnectionError, JSONDecodeError, UnidentifiedImageError):
+        return None
