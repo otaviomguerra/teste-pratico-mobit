@@ -1,7 +1,15 @@
-FROM python:3.7-slim-buster
+FROM tiangolo/uvicorn-gunicorn:python3.7
 
-COPY requirements.txt .
+RUN mkdir /backend
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /backend
 
-COPY . .
+WORKDIR /backend
+
+RUN pip install -r requirements.txt
+
+COPY . /backend
+
+EXPOSE 8000
+
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]

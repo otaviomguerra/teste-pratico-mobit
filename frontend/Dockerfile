@@ -1,7 +1,15 @@
-FROM python:3.7-slim-buster
+FROM python:3.7-slim
 
-COPY requirements.txt .
+RUN mkdir /frontend
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /frontend
 
-COPY . .
+WORKDIR /frontend
+
+RUN pip install -r requirements.txt
+
+COPY . /frontend
+
+EXPOSE 8501
+
+CMD ["streamlit", "run", "ui.py"]

@@ -1,5 +1,4 @@
-pandas
-seaborn
-scikit-learn
-streamlit
-Flask
+streamlit==0.75.0
+requests==2.24.0
+requests-toolbelt==0.9.1
+pillow==8.1.0
