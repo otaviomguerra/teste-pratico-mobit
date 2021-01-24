@@ -1,8 +1,8 @@
 import streamlit as st
 
-from frontend_utils import score_input_image
+from frontend_utils import classify_distortion, score_input_image
 
-BACKEND_URL = "http://backend:8000/brisque-score"
+BACKEND_URL = "http://backend:8000/"
 QUALITY_SCORE_THRESHOLD = 25
 
 st.title("Image quality scorer and Classifier")
@@ -29,7 +29,8 @@ if st.button("Evaluate image"):
 
     if input_image:
         
-        score = score_input_image(input_image, server_url=BACKEND_URL) # Calculates BRISQUE Score
+        # Calculates BRISQUE Score
+        score = score_input_image(input_image, server_url=BACKEND_URL+'brisque-score') 
         
         # Check if request is valid
         if score is None:
@@ -43,9 +44,12 @@ if st.button("Evaluate image"):
             st.image(input_image, use_column_width=True)
             st.write(f"**BRISQUE Score**: `{score}`")
 
-            # Classify problem only if score is high enough
+            # Classify problem only if score is high enough (distorted image)
             if float(score) > QUALITY_SCORE_THRESHOLD:
-                problem_label, probability = ('Gaussian Noise', 0.9)
+                problem_label, probability = classify_distortion(
+                    input_image,
+                    server_url=BACKEND_URL+'classification'
+                )
                 st.write(f"**Problem class**: `{problem_label}`")
                 st.write(f"**Probability**: `{probability * 100}%`")
     

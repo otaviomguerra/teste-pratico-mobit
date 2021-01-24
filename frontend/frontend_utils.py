@@ -36,3 +36,24 @@ def score_input_image(image, server_url: str):
         return response_json
     except (ConnectionError, JSONDecodeError, UnidentifiedImageError):
         return None
+
+
+def classify_distortion(image, server_url: str):
+    """Calls image distortion classification
+    service given a input image.
+
+    Parameters
+    ----------
+    image : binary
+        Image object to be classified
+    server_url : str
+        URL of the service that will
+    make the distortion classication.
+
+    Returns
+    -------
+    (str, float)
+        Tuple with distortion class and probability
+        given by the model.
+    """
+    return 'NotImplemented', 0.9
