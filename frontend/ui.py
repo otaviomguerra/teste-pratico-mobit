@@ -51,7 +51,7 @@ if st.button("Evaluate image"):
                     server_url=BACKEND_URL+'classification'
                 )
                 st.write(f"**Problem class**: `{problem_label}`")
-                st.write(f"**Probability**: `{probability * 100}%`")
+                st.write(f"**Probability**: `{probability} %`")
     
     else:
         st.warning("Please, insert an image!")
