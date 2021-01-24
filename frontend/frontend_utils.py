@@ -56,4 +56,4 @@ def classify_distortion(image, server_url: str):
         Tuple with distortion class and probability
         given by the model.
     """
-    return 'NotImplemented', 0.9
+    return 'NotImplemented', 'NotImplemented'
