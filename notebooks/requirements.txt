@@ -1,5 +1,8 @@
 pandas
 seaborn
 scikit-learn
-streamlit
-Flask
+tensorflow
+pillow
+notebook
+jupyter-lab
+python-opencv
