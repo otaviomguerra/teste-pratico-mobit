@@ -1,6 +1,6 @@
 # No-Reference Image Quality Assessment (Mobit practical test)
 
-This is my practical test for Embedded Systems developer at Mobit LTDA.
+This is my practical test for Data Scientist role at Mobit Brasil LTDA.
 
 Author: Otávio A. M. Guerra
 
